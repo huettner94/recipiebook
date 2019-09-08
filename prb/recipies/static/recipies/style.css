@@ -1,0 +1,66 @@
+body {
+    font-size: 9pt;
+    font-family: "universlt55", Verdana, serif;
+    webkit-print-color-adjust: exact;
+}
+
+#wrapper {
+    height: 277mm;
+    width: 190mm;
+    border: 1px solid black;
+    margin: 10mm;
+    position: absolute;
+}
+
+h1, h4 {
+    font-family: "agilohandwriting", Verdana, serif;
+}
+
+h1 {
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10mm 0 9mm 0;
+    margin: 15mm 0 0 0;
+    font-size: 30pt;
+}
+
+h4 {
+    color: black;
+    font-size: 14pt;
+}
+
+@font-face {
+    font-family: "agilohandwriting";
+    src: url(fonts/agilohandwriting.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "universlt55";
+    src: url(fonts/universltstd.otf) format("opentype");
+}
+
+#linkespalte, #rechtespalte {
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+#linkespalte {
+    width: 50%;
+    padding: 4mm 10mm 0 10mm;
+}
+
+#rechtespalte {
+    width: 34%;
+    margin: 4mm 10mm 0 0;
+}
+
+#rechtespalte h4 {
+    padding: 0 5mm 0 5mm;
+}
+
+#zettelkasten {
+    border: 0.5mm solid black;
+}
