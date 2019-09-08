@@ -7,5 +7,8 @@ class RecipieView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(TemplateView, self).get_context_data(**kwargs)
-        context['recipie'] = get_object_or_404(Recipie, pk=kwargs['recipieid'])
+        context['recipies'] = Recipie.objects.all()
+        if "recipieid" in kwargs:
+            context['recipie'] = get_object_or_404(Recipie, pk=kwargs['recipieid'])
         return context
+

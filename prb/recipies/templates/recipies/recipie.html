@@ -2,37 +2,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>prb</title>
-    <link rel="stylesheet" href="{% static 'recipies/normal.css' %}">
-    <link rel="stylesheet" href="{% static 'recipies/style.css' %' %}">
+	<meta charset="UTF-8">
+	<title>PuneeRezepteBuch</title>
+	<link rel="stylesheet" href="{% static 'recipies/normal.css' %}">
+	<link rel="stylesheet" href="{% static 'recipies/style.css' %' %}">
 </head>
 <body>
-    <div id="wrapper">
-    <h1>{{recipie.name}}</h1>
-        <div id="linkespalte">
-		{% if recipie.amount %}
-			Für {{ recipie.amount }} Personen
-		{% endif %}
-		{% for itemlist in recipie.itemlist_set.all %}
-		<h2>{{ itemlist.name }}</h2>
+	<h1>Rezepte</h1>
+	<div class="nav">
 		<ul>
-			{% for item in itemlist.item_set.all %}
-			<li>{{ item.name }}</li>
+			{% for recipieitem in recipies %}
+			<li><a href='{% url 'recipie' recipieitem.id %}'>{{ recipieitem.name }}</a></li>
 			{% endfor %}
 		</ul>
-		{% endfor %}
-        </div>
-        <div id="rechtespalte">
-            <div id="zettelkasten">
-                <h2>Einkaufszeddele</h2>
-		<ul>
-			{% for item in recipie.shoppingitem_set.all %}
-			<li>{{ item.name }}</li>
+	</div>
+	{% if recipie %}
+	<div class="wrapper">
+		<h2>{{recipie.name}}</h2>
+		<div class="left">
+			{% if recipie.amount %}
+				Für {{ recipie.amount }} Personen
+			{% endif %}
+			{% for itemlist in recipie.itemlist_set.all %}
+			<h3>{{ itemlist.name }}</h3>
+			<ul>
+				{% for item in itemlist.item_set.all %}
+				<li>{{ item.name }}</li>
+				{% endfor %}
+			</ul>
 			{% endfor %}
-		</ul>
-            </div>
-        </div>
-    </div>
+			</div>
+			<div class="right boxed">
+				<h3>Einkaufszeddele</h3>
+				<ul>
+					{% for item in recipie.shoppingitem_set.all %}
+					<li>{{ item.name }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endif %}
 </body>
 </html>

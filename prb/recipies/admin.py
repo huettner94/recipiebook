@@ -4,14 +4,17 @@ from recipies.models import recipie, item, itemlist, shoppingitem
 
 # Register your models here.
 
-class ShoppingitemInline(nested_admin.NestedStackedInline):
+class ShoppingitemInline(nested_admin.NestedTabularInline):
     model = shoppingitem.Shoppingitem
+    extra = 0
 
-class ItemInline(nested_admin.NestedStackedInline):
+class ItemInline(nested_admin.NestedTabularInline):
     model = item.Item
+    extra = 0
 
 class ItemlistInline(nested_admin.NestedStackedInline):
     model = itemlist.Itemlist
+    extra = 0
     inlines = [
             ItemInline,
             ]
