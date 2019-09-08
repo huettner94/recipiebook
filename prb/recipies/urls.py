@@ -3,5 +3,6 @@ import recipies.views.recipie
 
 urlpatterns = [
         path("", recipies.views.recipie.RecipieView.as_view()),
-        path("<recipieid>/", recipies.views.recipie.RecipieView.as_view(), name="recipie"),
+        path("<recipieid>/", recipies.views.recipie.RecipieView.as_view(),
+             name="recipie"),
         ]
