@@ -9,18 +9,28 @@
 </head>
 <body>
     <div id="wrapper">
-        <h1>Leggeres Fraisen</h1>
+    <h1>{{recipie.name}}</h1>
         <div id="linkespalte">
-            <h4>Zubereitung</h4>
-            Für 4 Portionen
-        <ul>
-            <li>1000 Erdbeeren</li>
-            <li>0 Kohl</li>
-        </ul>
+		{% if recipie.amount %}
+			Für {{ recipie.amount }} Personen
+		{% endif %}
+		{% for itemlist in recipie.itemlist_set.all %}
+		<h2>{{ itemlist.name }}</h2>
+		<ul>
+			{% for item in itemlist.item_set.all %}
+			<li>{{ item.name }}</li>
+			{% endfor %}
+		</ul>
+		{% endfor %}
         </div>
         <div id="rechtespalte">
             <div id="zettelkasten">
-                <h4>Einkaufszeddele</h4>
+                <h2>Einkaufszeddele</h2>
+		<ul>
+			{% for item in recipie.shoppingitem_set.all %}
+			<li>{{ item.name }}</li>
+			{% endfor %}
+		</ul>
             </div>
         </div>
     </div>

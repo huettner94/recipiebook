@@ -19,6 +19,7 @@ from django.urls import include, re_path, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('nested_admin/', include('nested_admin.urls')),
     path('recipies/', include("recipies.urls")),
     re_path(r'^.*$', RedirectView.as_view(url='/recipies/', permanent=False)),
 ]

@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prb</title>
+    <link rel="stylesheet" href="{% static 'recipies/normal.css' %}">
+    <link rel="stylesheet" href="{% static 'recipies/style.css' %' %}">
+</head>
+<body>
+        <h1>Rezepte</h1>
+	<ul>
+	{% for recipie in recipies %}
+	<li><a href='{% url 'recipie' recipie.id %}'>{{ recipie.name }}</a></li>
+	{% endfor %}
+	</ul>
+</body>
+</html>
