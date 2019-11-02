@@ -12,9 +12,17 @@ jobs:
       uses: crazy-max/ghaction-docker-buildx@v1
       with:
         version: latest
+    - name: Login to Github Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: docker.pkg.github.com
+        username: huettner94
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Run Buildx
       run: |
+        TAGNAME=$(if [[ "${GITHUB_REF}" == "refs/heads/master" ]]; then echo "latest"; else echo "${GITHUB_REF}" | sed -e 's|refs/[a-z]*/||'; fi)
         docker buildx build \
         --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
-        --output "type=image,push=false" \
+        --output "type=image,push=true" \
+        --tag "recipiebook:${TAGNAME}" \
         --file Dockerfile .
