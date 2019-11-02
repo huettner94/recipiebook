@@ -7,7 +7,7 @@ ENV PATH /env/bin:$PATH
 
 ADD requirements.txt /app/requirements.txt
 RUN /env/bin/pip install --upgrade pip && /env/bin/pip install -r /app/requirements.txt
-COPY prb/ /app
+COPY recipiebook/ /app
 COPY start.sh /app/start.sh
 
 WORKDIR /app
