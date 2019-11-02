@@ -1,3 +1,3 @@
-Django
-django-nested-admin
-pycodestyle
+Django==2.2.6
+django-nested-admin==3.2.4
+gunicorn==19.9.0
