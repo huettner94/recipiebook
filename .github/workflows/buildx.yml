@@ -15,12 +15,12 @@ jobs:
     - name: Run Buildx
       run: |
         TAGNAME=$(if [[ "${GITHUB_REF}" == "refs/heads/master" ]]; then echo "latest"; else echo "${GITHUB_REF}" | sed -e 's|refs/[a-z]*/||'; fi)
-        docker login docker.pkg.github.com --username ${REGISTRY_USERNAME} --password ${REGISTRY_PASSWORD}
+        docker login --username ${REGISTRY_USERNAME} --password ${REGISTRY_PASSWORD}
         docker buildx build \
         --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
         --output "type=image,push=true" \
-        --tag "docker.pkg.github.com/huettner94/recipiebook/recipiebook:${TAGNAME}" \
+        --tag "recipiebook:${TAGNAME}" \
         --file Dockerfile .
       env:
-        REGISTRY_USERNAME: huettner94
-        REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
