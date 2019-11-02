@@ -19,7 +19,7 @@ jobs:
         docker buildx build \
         --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
         --output "type=image,push=true" \
-        --tag "recipiebook:${TAGNAME}" \
+        --tag "docker.pkg.github.com/huettner94/recipiebook/recipiebook:${TAGNAME}" \
         --file Dockerfile .
       env:
         REGISTRY_USERNAME: huettner94
