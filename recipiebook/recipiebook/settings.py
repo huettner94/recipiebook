@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import string
+import random
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '(89v2p+3qw@9obt(eh%yrc#y_n(gunk#6zv86&mfu9#9)sf*7^'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", ''.join(random.choice(string.ascii_letters) for i in range(30)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

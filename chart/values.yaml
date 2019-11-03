@@ -37,11 +37,12 @@ adminEmail: admin@admin.org
 # adminPassword: strongpassword
 
 # Use an existing secret for the admin user.
-admin:
+secrets:
   existingSecret: ""
-  userKey: admin-user
-  passwordKey: admin-password
-  emailKey: admin-email
+  adminUserKey: admin-user
+  adminPasswordKey: admin-password
+  adminEmailKey: admin-email
+  djangoSecretKey: django-secret
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

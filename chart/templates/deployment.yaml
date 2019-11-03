@@ -30,18 +30,23 @@ spec:
             - name: DJANGO_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.admin.existingSecret | default (include "recipiebook.fullname" .) }}
-                  key: {{ .Values.admin.userKey | default "admin-user" }}
+                  name: {{ .Values.secrets.existingSecret | default (include "recipiebook.fullname" .) }}
+                  key: {{ .Values.secrets.adminUserKey | default "admin-user" }}
             - name: DJANGO_ADMIN_EMAIL
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.admin.existingSecret | default (include "recipiebook.fullname" .) }}
-                  key: {{ .Values.admin.emailKey | default "admin-email" }}
+                  name: {{ .Values.secrets.existingSecret | default (include "recipiebook.fullname" .) }}
+                  key: {{ .Values.secrets.adminEmailKey | default "admin-email" }}
             - name: DJANGO_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.admin.existingSecret | default (include "recipiebook.fullname" .) }}
-                  key: {{ .Values.admin.passwordKey | default "admin-password" }}
+                  name: {{ .Values.secrets.existingSecret | default (include "recipiebook.fullname" .) }}
+                  key: {{ .Values.secrets.adminPasswordKey | default "admin-password" }}
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.existingSecret | default (include "recipiebook.fullname" .) }}
+                  key: {{ .Values.secrets.djangoSecretKey | default "admin-password" }}
           ports:
             - name: http
               containerPort: 80
