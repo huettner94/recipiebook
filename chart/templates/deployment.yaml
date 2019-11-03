@@ -27,6 +27,8 @@ spec:
           env:
             - name: PORT
               value: "80"
+            - name: DEBUG
+              value: "{{ .Values.debug }}"
             - name: DJANGO_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
