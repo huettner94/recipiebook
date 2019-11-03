@@ -1,3 +1,5 @@
+#
+helm_values.yml
 # Ignore vscode
 .vscode/
 
