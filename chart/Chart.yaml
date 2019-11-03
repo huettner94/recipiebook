@@ -1,0 +1,5 @@
+apiVersion: v1
+appVersion: "latest"
+description: A Helm chart for recipiebook https://github.com/huettner94/recipiebook/ 
+name: recipiebook
+version: 0.1.0
