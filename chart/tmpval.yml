@@ -1,8 +1,0 @@
-ingress:
-  enabled: true
-  hosts:
-    - host: prb.apps.huettner.local
-      paths: ["/"]
-persistence:
-  enabled: true
-  storageClassName: rook-ceph-block-high
