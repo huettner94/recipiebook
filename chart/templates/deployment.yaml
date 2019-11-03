@@ -46,7 +46,11 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.secrets.existingSecret | default (include "recipiebook.fullname" .) }}
-                  key: {{ .Values.secrets.djangoSecretKey | default "admin-password" }}
+                  key: {{ .Values.secrets.djangoSecretKey | default "django-secret" }}
+            {{ if .Values.persistence.enabled -}}
+            - name: SQLITE_PATH
+              value: "/var/lib/recipiebook"
+            {{- end }}
           ports:
             - name: http
               containerPort: 80
@@ -60,7 +64,18 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 -}}
+          {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - name: storage
+              mountPath: "/var/lib/recipiebook"
+          {{- end -}}
+      {{- if .Values.persistence.enabled }}
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "recipiebook.fullname" .) }}
+      {{- end -}}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
